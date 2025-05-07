@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canine Society – Вхід</title>
+    <link rel="icon" type="image/png" href="img/logo.jpg">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Вхід</h1>
+        <form  action="/login" method="POST">
+            <label for="name">Ім'я:</label>
+            <input type="text" id="name" name="name" maxlength="50" required>
+
+            <label for="phone_number">Номер телефону:</label>
+            <input 
+                type="tel" 
+                id="phone_number" 
+                name="phone_number" 
+                pattern="^\+380\d{9}$" 
+                maxlength="13" 
+                placeholder="+380XXXXXXXXX" 
+                required>
+
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Увійти</button>
+        </form>
+        <div class="reg_href">Ще не маєте акаунту? <a id="link_href" href="/">Реєстрація</a></div>
+        <p id="error-message" style="color: red; margin-top: 10px; text-align: center;"></p>
+    </div>
+    <script src="js/script.js"></script>
+    <script src="js/login-form.js"></script>
+</body>
+</html>

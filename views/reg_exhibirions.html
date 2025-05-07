@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Реєстрація собаки на виставку</title>
+  <link rel="icon" type="image/png" href="/img/logo.jpg" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/reg-dog.css" />
+</head>
+<body>
+  <div class="register-exhibition-container">
+    <h1>Реєстрація собаки на виставку</h1>
+    <form id="exhibition-form">
+
+      <label for="dog_id">Собака:</label>
+      <select id="dog_id" name="dog_id" required>
+        <option value="">Завантаження...</option>
+      </select>
+
+      <label for="exhibition_id">Виставка:</label>
+      <select id="exhibition_id" name="exhibition_id" required>
+        <option value="">Завантаження...</option>
+      </select>
+
+      <button type="submit">Зареєструвати</button>
+      <p id="error-message" class="error-message"></p>
+    </form>
+    <div class="back-link">
+      <a href="/dashboard">← Назад на головну</a>
+    </div>
+  </div>
+  <script src="/js/exhibition-registration.js"></script>
+</body>
+</html>

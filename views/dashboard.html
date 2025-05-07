@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canine Society – Собаки та Виставки</title>
+  <link rel="icon" type="image/png" href="img/logo.jpg">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Собаки -->
+      <div class="dogs-section">
+        <div class="owner-info" id="owner-info">
+        </div>
+        <div class="dogs-box" id="dogs-box">
+        </div>
+        <div class="button-wrapper">
+          <button id="add-dog-btn" class="add-dog-button">Додати собаку</button>
+      </div>
+      </div>
+
+    <!-- Виставки -->
+    <div class="exhibitions-box">
+      <div class="exhibitions-content">
+        <div class="box-block exhibitions-list" id="exhibitions-list">
+
+        </div>
+
+        <div class="box-block registration-table">
+          <h4>Реєстрація на виставки:</h4>
+          <div class="scrollable-table">
+            <table id="registrations-table">
+              <thead>
+                <tr>
+                  <th>Собака</th>
+                  <th>Виставка</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="3">Завантаження...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>        
+      </div>
+      <div class="button-wrapper">
+        <button id="register-dog-exhib-btn" class="register-button">Зареєструватися на виставку</button>
+      </div>
+    </div>
+    <!-- <script src="js/script.js"></script> -->
+    <script src="js/dashboard-form.js"></script>
+  </div>
+</body>
+</html>
