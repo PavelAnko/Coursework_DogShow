@@ -13,26 +13,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const res = await fetch('/api/owner-dogs');
-        const dogs = await res.json();
+try {
+    const res = await fetch('/api/owner-dogs');
+    const dogs = await res.json();
 
-        const dogsBox = document.getElementById('dogs-box');
-        dogsBox.innerHTML = '';
+    const dogsBox = document.getElementById('dogs-box');
+    dogsBox.innerHTML = '';
 
-        dogs.forEach(dog => {
-            const dogEntry = document.createElement('div');
-            dogEntry.classList.add('dog-entry');
+    if (dogs.length === 0) {
+        dogsBox.innerHTML = '<div class="no-dogs-message">У вас поки що немає зареєстрованих собак 🐶</div>';
+        return;
+    }
 
-            dogEntry.innerHTML = `
-                <button class="delete-btn" data-id="${dog.id}">❌</button>
-                <div class="dog-info">${dog.name} — ${dog.breed}, ${dog.age} років</div>
-                <div class="dog-achievement">Досягнення будуть тут</div>
-            `;
+    for (const dog of dogs) {
+        const dogEntry = document.createElement('div');
+        dogEntry.classList.add('dog-entry');
 
-            dogsBox.appendChild(dogEntry);
-        });
-    } catch (err) {
+        // Отримати досягнення собаки
+        let achievementText = 'Досягнень поки немає';
+        try {
+            let dogId = dog.id;
+            const achRes = await fetch(`/api/dog-achievements/${dogId}`);
+            const achievements = await achRes.json();
+
+            if (Array.isArray(achievements) && achievements.length > 0) {
+                achievementText = achievements.map(a => a.title).join(', ');
+            }
+        } catch (e) {
+            console.error(`Помилка завантаження досягнень собаки ${dog.id}:`, e);
+        }
+
+        dogEntry.innerHTML = `
+            <button class="delete-btn" data-id="${dog.id}">❌</button>
+            <div class="dog-info">${dog.name} — ${dog.breed}, ${dog.age} років</div>
+            <div class="dog-achievement">${achievementText}</div>
+        `;
+
+        dogsBox.appendChild(dogEntry);
+      }
+    }catch (err) {
         console.error('Помилка при завантаженні собак:', err);
     }
 });
@@ -45,16 +64,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   
       const html = exhibitions
         .slice(0, -1)
-        .map(({ name, date, location, organizer }) => {
+        .map(({ name, date, location, organizer, category_name }) => {
           const d = new Date(date).toLocaleDateString('uk-UA', {
             day: 'numeric', month: 'long', year: 'numeric'
           });
           return `
             <div class="exhibition-block">
-              <h3 class="exhibition-name">${name}</h3>
-              <p class="exhibition-details">
-                ${d}, ${location}<br>Організатор: ${organizer}
-              </p>
+                <h3 class="exhibition-name">${name}</h3>
+                <p class="exhibition-details">
+                    ${d}, ${location}<br>
+                    Організатор: ${organizer}<br>
+                     Категорія: ${category_name}
+                </p>
             </div>
           `;
         })
@@ -76,6 +97,7 @@ document.getElementById('register-dog-exhib-btn').addEventListener('click', func
 
 document.addEventListener('DOMContentLoaded', async () => {
   const tableBody = document.querySelector('#registrations-table tbody');
+  const table = document.querySelector('#registrations-table'); // Вибираємо саму таблицю (додано для сховування)
 
   try {
     const response = await fetch('/api/owner-registrations');
@@ -87,12 +109,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tableBody.innerHTML = ''; 
 
-    if (data.length === 0) {
+    if (data.length === 0) { 
       tableBody.innerHTML = '<tr><td colspan="3">Немає зареєстрованих собак</td></tr>';
       return;
     }
 
-    data.forEach(reg => {
+    const activeRegistrations = data.filter(reg => reg.status === 'Зареєстровано'); 
+
+    if (activeRegistrations.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="3">Немає зареєстрованих собак</td></tr>';
+      return;
+    }
+
+    activeRegistrations.forEach(reg => {
       const row = document.createElement('tr');
       row.innerHTML = `
         <td>${reg.dog_name}</td>
@@ -101,11 +130,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
       tableBody.appendChild(row);
     });
+
   } catch (err) {
     console.error('Помилка при завантаженні реєстрацій:', err);
     tableBody.innerHTML = '<tr><td colspan="3">Помилка при завантаженні даних</td></tr>';
   }
 });
+
 
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete-btn")) {
@@ -141,3 +172,31 @@ document.addEventListener("click", function (e) {
   }
 });
 
+document.getElementById('log-out-btn').addEventListener('click', async () => {
+  try {
+    const res = await fetch('/logout', { method: 'POST' });
+    if (res.ok) {
+      window.location.href = '/login';
+    } else {
+      console.error('Помилка при виході з акаунту');
+    }
+  } catch (err) {
+    console.error('Помилка з’єднання при виході:', err);
+  }
+});
+
+// document.getElementById('res-dog-exhibition-btn').addEventListener('click', async () => {
+//   try {
+//     const res = await fetch('/api/result-exhibition', { method: 'POST' });
+//     if (res.ok) {
+//       const data = await res.json(); 
+//       alert('Досягнення успішно присвоєно собаці!'); 
+//       window.location.reload(); 
+//     } else {
+//       alert('Не вдалося присвоїти досягнення.');
+//     }
+//   } catch (err) {
+//     console.error('Error:', err);
+//     alert('Помилка при зв’язку з сервером.');
+//   }
+// });

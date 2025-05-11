@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     const errorMessage = document.getElementById('error-message');
 
-    // Автозаповнення +380
     phoneInput.addEventListener('focus', () => {
         if (!phoneInput.value.startsWith('+380')) {
             phoneInput.value = '+380';
         }
     });
 
-    // Заборонити введення нецифрових символів після +380
     phoneInput.addEventListener('input', () => {
         if (!phoneInput.value.startsWith('+380')) {
             phoneInput.value = '+380';
@@ -25,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         phoneInput.value = '+380' + phoneInput.value.slice(4).replace(/\D/g, '').slice(0, 9);
     });
 
-    // Перевірка при сабміті
     form.addEventListener('submit', (e) => {
         const phoneRegex = /^\+380\d{9}$/;
         errorMessage.textContent = '';

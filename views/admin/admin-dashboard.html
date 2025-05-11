@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель адміністратора</title>
+    <link rel="icon" type="image/png" href="/img/logo.jpg">
+    <link rel="stylesheet" href="/css/admin-log-in.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Панель адміністратора</h1>
+
+        <div class="dashboard-sections">
+
+            <!-- Додати виставку -->
+            <div class="exhibition-container">
+                <section class="section">
+                    <h2>Додати виставку</h2>
+                    <div class="space-container-ex">
+                        <div class="breed-checkboxes">
+                            <div class="column">
+                                <label><input type="checkbox" name="breeds" value="1"> Німецька вівчарка</label>
+                                <label><input type="checkbox" name="breeds" value="2"> Лабрадор-ретривер</label>
+                                <label><input type="checkbox" name="breeds" value="3"> Золотистий ретривер</label>
+                                <label><input type="checkbox" name="breeds" value="4"> Йоркширський тер’єр</label>
+                                <label><input type="checkbox" name="breeds" value="5"> Французький бульдог</label>
+                                <label><input type="checkbox" name="breeds" value="6"> Хаскі</label>
+                                <label><input type="checkbox" name="breeds" value="7"> Доберман</label>
+                                <label><input type="checkbox" name="breeds" value="8"> Ротвейлер</label>
+                                <label><input type="checkbox" name="breeds" value="9"> Мопс</label>
+                                <label><input type="checkbox" name="breeds" value="10"> Джек-Рассел-тер’єр</label>
+                                <label><input type="checkbox" name="breeds" value="11"> Бультер’єр</label>
+                                <label><input type="checkbox" name="breeds" value="12"> Алабай</label>
+                                <label><input type="checkbox" name="breeds" value="13"> Кане-корсо</label>
+                                <label><input type="checkbox" name="breeds" value="14"> Акіта-іну</label>
+                                <label><input type="checkbox" name="breeds" value="15"> Бігль</label>
+                            </div>
+                            <div class="column">
+                                <label><input type="checkbox" name="breeds" value="16"> Такса</label>
+                                <label><input type="checkbox" name="breeds" value="17"> Шпіц</label>
+                                <label><input type="checkbox" name="breeds" value="18"> Пітбуль</label>
+                                <label><input type="checkbox" name="breeds" value="19"> Шелті</label>
+                                <label><input type="checkbox" name="breeds" value="20"> Англійський бульдог</label>
+                                <label><input type="checkbox" name="breeds" value="21"> Чихуахуа</label>
+                                <label><input type="checkbox" name="breeds" value="22"> Ньюфаундленд</label>
+                                <label><input type="checkbox" name="breeds" value="23"> Бернський зенненхунд</label>
+                                <label><input type="checkbox" name="breeds" value="24"> Самоїд</label>
+                                <label><input type="checkbox" name="breeds" value="25"> Ірландський сетер</label>
+                                <label><input type="checkbox" name="breeds" value="26"> Басенджі</label>
+                                <label><input type="checkbox" name="breeds" value="27"> Кокер-спанієль</label>
+                                <label><input type="checkbox" name="breeds" value="28"> Пудель</label>
+                                <label><input type="checkbox" name="breeds" value="29"> Шарпей</label>
+                                <label><input type="checkbox" name="breeds" value="30"> Вельш-коргі</label>
+                            </div>
+                        </div>
+
+                        <form id="add-exhibition-form" action="/admin/dashboard-exhibition" method="POST">
+                            <label>Виставка:
+                                <input type="text" name="name" id="name" maxlength="50" required>
+                            </label>
+                            <label>Дата проведення:
+                                <input type="date" name="date" id="date" required>
+                            </label>
+                            <label>Локація:
+                                <input type="text" name="location" id="location" maxlength="50" required>
+                            </label>
+                            <label>Організатор:
+                                <input type="text" name="organizer" id="organizer" maxlength="30" required>
+                            </label>
+                            <label>Категорія:
+                                <select name="category_id" id="category_id" required></select>
+                            </label>
+                            <button type="submit">Додати виставку</button>
+                            <p id="exhibition-error-message" style="color: red; margin-top: 10px; text-align: center;"></p>
+                        </form>
+
+                    </div>
+                </section>
+            </div>
+
+            <!-- Додати досягнення -->
+            <section class="section">
+                <h2>Додати досягнення собаці</h2>
+                <form id="add-achievement-form" action="/admin/dashboard-achievement" method="POST">
+                    <label>Користувач:
+                        <select name="owner_id" id="owner_id" required></select>
+                    </label>
+                    <label>Собака:
+                        <select name="dog_id" id="dog_id" required disabled></select>
+                    </label>
+                    <label>Виставка:
+                        <select name="exhibition_id" id="exhibition_id" required disabled></select>
+                    </label>
+                    <label>Досягнення:
+                        <select name="achievement_id" id="achievement_id" required disabled></select>
+                    </label>
+                    <button type="submit">Додати досягнення</button>
+                    <p id="achievement-message" class="message"></p>
+                </form>
+                <p id="achievement-error-message" style="color: red; margin-top: 10px; text-align: center;"></p>
+                <div class="remove-from-exhibition-wrapper" style="margin-top: 15px;">
+                    <button id="remove-from-exhibition" class="remove-button" disabled>Зняти з виставки</button>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="/js/adminJs/admin-dashboard.js"></script>
+</body>
+</html>

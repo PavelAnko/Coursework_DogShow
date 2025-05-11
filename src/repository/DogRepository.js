@@ -2,11 +2,30 @@ const db = require('../models/DataBase');
 
 const DogModel = {
     async addDog(name, breed_id, age, owner_id) {
+        const result = await db.query(`
+            SELECT id FROM dogs ORDER BY id;
+        `);
+
+        const dogIds = result.rows.map(dog => dog.id); 
+        let availableIndex = null;
+
+        for (let i = 1; i <= dogIds.length; i++) {
+            if (!dogIds.includes(i)) {
+                availableIndex = i;  
+                break;
+            }
+        }
+
+        if (!availableIndex) {
+            availableIndex = dogIds.length + 1;
+        }
+
         await db.query(
-            'INSERT INTO dogs (name, breed_id, age, owner_id) VALUES ($1, $2, $3, $4)',
-            [name, breed_id, age, owner_id]
+            'INSERT INTO dogs (id, name, breed_id, age, owner_id) VALUES ($1, $2, $3, $4, $5)',
+            [availableIndex, name, breed_id, age, owner_id]
         );
     },
+
 
     async updateOwnerDogCount(owner_id) {
         await db.query(

@@ -11,10 +11,11 @@
   <div class="container">
     <!-- Собаки -->
       <div class="dogs-section">
-        <div class="owner-info" id="owner-info">
+        <div class="author-block">
+          <div class="owner-info" id="owner-info"></div>
+          <button id="log-out-btn" class="log-out">Log out</button>
         </div>
-        <div class="dogs-box" id="dogs-box">
-        </div>
+        <div class="dogs-box" id="dogs-box"></div>
         <div class="button-wrapper">
           <button id="add-dog-btn" class="add-dog-button">Додати собаку</button>
       </div>
@@ -28,7 +29,10 @@
         </div>
 
         <div class="box-block registration-table">
-          <h4>Реєстрація на виставки:</h4>
+          <div class="info-dog-regist">
+            <h4>Реєстрація на виставки:</h4>
+            <!-- <button id="res-dog-exhibition-btn" class="res-dog-exgibition">Отримати результати</button> -->
+          </div>
           <div class="scrollable-table">
             <table id="registrations-table">
               <thead>
@@ -49,7 +53,6 @@
         <button id="register-dog-exhib-btn" class="register-button">Зареєструватися на виставку</button>
       </div>
     </div>
-    <!-- <script src="js/script.js"></script> -->
     <script src="js/dashboard-form.js"></script>
   </div>
 </body>

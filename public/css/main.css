@@ -213,9 +213,7 @@ th {
 }
 
 .owner-info{
-    font-size: 16px;
     font-weight: bold;
-    padding-bottom: 10px;
 }
 
 #dogs-box {
@@ -239,23 +237,70 @@ th {
 .scrollable-table {
     max-height: 124px;
     overflow-y: auto;
-  }
-  .scrollable-table table {
+}
+
+.scrollable-table table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .scrollable-table th, 
-  .scrollable-table td {
+}
+
+.scrollable-table th, 
+.scrollable-table td {
     padding: 0.6rem;
     border-bottom: 1px solid #e0e0e0;
     background-color: #fff;
-  }
+}
 
-  .scrollable-table tbody tr:last-child td {
+.scrollable-table tbody tr:last-child td {
     border-bottom: none;
-  }
-  
+}
+
+.no-dogs-message {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #555;
+    background-color: #f9f9f9;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.author-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.info-dog-regist{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.log-out {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-right: 10px;
+}
+
+.log-out:hover {
+    background-color: #c62828;
+}
+
+.res-dog-exgibition{
+    padding: 7px 16px;
+}
+
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }

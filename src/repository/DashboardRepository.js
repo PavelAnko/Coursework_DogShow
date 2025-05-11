@@ -3,11 +3,12 @@ const db = require('../models/DataBase');
 const DashboardModel = {
     getAllExhibitionsExceptLast: async () => {
         const result = await db.query(
-            `SELECT id, name, date, location, organizer, criteria, category_id
-             FROM exhibitions
-             ORDER BY date ASC`
+            `SELECT e.id, e.name, e.date, e.location, e.organizer, ec.name AS category_name
+             FROM exhibitions e
+             JOIN exhibition_categories ec ON e.category_id = ec.id
+             ORDER BY e.date ASC`
         );
-
+    
         return result.rows.slice(0, -1);
     },
 
@@ -25,6 +26,19 @@ const DashboardModel = {
         catch(err){
             console.error('Помилка при видаленні собаки:', err);
             throw err;
+        }
+    },
+
+    getRegisteredDogs: async (ownerId) => {
+        try {
+            const { rows } = await db.query(
+                `SELECT * FROM public.exhibition_registrations WHERE is_active = true AND owner_id = $1 ORDER BY dog_id ASC, exhibition_id ASC`,
+                [ownerId]
+            );
+            return rows;
+        } catch (err) {
+            console.error('Error fetching registered dogs:', err);
+            throw new Error('Database error while fetching registered dogs');
         }
     }
 };

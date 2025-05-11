@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ======= Сторінка входу ======= */
+.login-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* ======= Заголовки ======= */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* ======= Форма ======= */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* ======= Кнопка ======= */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* ======= Повідомлення ======= */
+.message {
+    text-align: center;
+    font-weight: bold;
+    color: green;
+    margin-top: 10px;
+}
+
+/* ======= Адмін-панель ======= */
+.container {
+    max-width: 1200px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Блоки секцій */
+.dashboard-sections {
+    display: flex;
+    align-items: anchor-center;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.section {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.remove-from-exhibition-wrapper{
+    display: flex;
+    justify-content: end;
+}
+
+.remove-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    width: 30%;
+    border-radius: 3px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.remove-button:hover {
+    background-color: #c0392b;
+}
+
+.remove-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #666;
+}
+
+.exhibition-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+.breed-checkboxes {
+    display: flex;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.breed-checkboxes .column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.breed-checkboxes label {
+    font-size: 14px;
+}
+
+.space-container-ex{
+    display: flex;
+}
+
+#add-exhibition-form{
+    margin-left: 20px;
+}
+
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .dashboard-sections {
+        flex-direction: column;
+    }
+}

@@ -49,3 +49,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         breedSelect.innerHTML = '<option value="">Не вдалося завантажити породи</option>';
     }
 });
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const backLink = document.getElementById('back-link');
+    try {
+        const response = await fetch('/api/owner-sesion');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        if (data.ownerExists) {
+            backLink.style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Помилка при перевірці сесії:', error);
+    }
+});
+
+
