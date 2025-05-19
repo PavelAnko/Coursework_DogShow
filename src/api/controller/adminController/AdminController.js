@@ -1,11 +1,12 @@
 const path = require('path');
+const AdminModel = require('../../../repository/adminRepository/AdminRepository.js');
+
 // const bcrypt = require('bcrypt');
-const db = require('../../models/DataBase.js');
-const AdminModel = require('../../repository/adminRepository/AdminRepository.js');
+// const db = require('../../../models/DataBase.js');
 
 const AdminController = {
     getAdminLogInPage: (req, res) => {
-        res.sendFile(path.join(__dirname, '../../../views/admin/admin-log-in.html')); 
+        res.sendFile(path.join(__dirname, '../../../../views/admin/admin-log-in.html')); 
     },
 
     loginAdmin: async (req, res) => {
@@ -26,7 +27,7 @@ const AdminController = {
         if (!req.session.admin) {
             return res.redirect('/error/403');
         }
-        res.sendFile(path.join(__dirname, '../../../views/admin/admin-dashboard.html'));
+        res.sendFile(path.join(__dirname, '../../../../views/admin/admin-dashboard.html'));
     },
 
     postDogAchievement: async (req, res) => {
@@ -50,9 +51,8 @@ const AdminController = {
 
     getAllOwners: async (req, res) => {
         try {
-            const { rows } = await db.query(`
-            SELECT id, name, surname FROM public.owners ORDER BY id ASC`);
-            res.json(rows);
+            const owners = await AdminModel.getAllOwnersFromDB();
+            res.json(owners);
         } catch (err) {
             console.error('Помилка отримання власників:', err);
             res.status(500).json({ error: 'DB error' });

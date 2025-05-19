@@ -1,12 +1,9 @@
-const db = require('../models/DataBase');
 const bcrypt = require('bcrypt');
+const OwnerModel = require('../repository/OwnerRepository');
 
 const AuthService = {
   authenticateOwner:  async ({ name, phone_number, password }) => {
-    const result = await db.query(
-      `SELECT id, name, surname, password FROM owners WHERE phone_number = $1`,
-      [phone_number]
-    );
+    const result = await OwnerModel.findByPhoneNumber(phone_number);
 
     if (result.rows.length === 0) {
       throw new Error('Користувача з таким номером не знайдено');

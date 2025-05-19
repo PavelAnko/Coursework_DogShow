@@ -40,6 +40,17 @@ const DashboardModel = {
             console.error('Error fetching registered dogs:', err);
             throw new Error('Database error while fetching registered dogs');
         }
+    },
+     
+    getModelDogAchievementsById: async (dogId) => {
+         const result = await db.query(
+            `SELECT a.id, a.title
+            FROM dog_achievements da
+            JOIN achievements a ON a.id = da.achievement_id
+            WHERE da.dog_id = $1`,
+            [dogId]
+        );
+        return result;
     }
 };
 

@@ -1,7 +1,7 @@
 const db = require('../models/DataBase');
 
 const ExhibitionRepository = {
-    async getExhibitionRegistrationsByOwner(owner_id) {
+    getExhibitionRegistrationsByOwner: async (owner_id) => {
         const result = await db.query(`
             SELECT 
                 dogs.name AS dog_name, 

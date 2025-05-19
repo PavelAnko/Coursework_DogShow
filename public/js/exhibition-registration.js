@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-  await fetchData('/api/exhibitions', exhibitionSelect, 'Не вдалося завантажити виставки', exhibitions => exhibitions);
-  await fetchData('/api/owner-dogs', dogSelect, '-- Оберіть собаку --', dogs => dogs.map(dog => ({
+  await fetchData('/dashboard/api/exhibitions', exhibitionSelect, 'Не вдалося завантажити виставки', exhibitions => exhibitions);
+  await fetchData('/dashboard/api/owner-dogs', dogSelect, '-- Оберіть собаку --', dogs => dogs.map(dog => ({
     id: dog.id,
     name: `${dog.name} – ${dog.breed} – ${dog.age} років`
   })));
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { dog_id, exhibition_id } = Object.fromEntries(new FormData(form));
 
     try {
-      const response = await fetch('/dashboard/reg-exhibirions', {
+      const response = await fetch('/dashboard/reg-exhibirions/pet', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ dog_id, exhibition_id, is_active: true })
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   dogSelect.addEventListener('change', async () => {
     exhibitionSelect.innerHTML = '';
     if (!dogSelect.value) return;
-    await fetchData(`/dashboard/available-exhibitions/${dogSelect.value}`, exhibitionSelect, '-- Оберіть виставку --', exhibitions => exhibitions);
+    await fetchData(`/dashboard/reg-exhibirions/available-exhibitions/${dogSelect.value}`, exhibitionSelect, '-- Оберіть виставку --', exhibitions => exhibitions);
   });
 
   exhibitionSelect.disabled = true;

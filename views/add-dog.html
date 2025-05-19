@@ -10,7 +10,7 @@
 <body>
     <div class="registration-container">
         <h1>Додати собаку</h1>
-        <form action="/add-dog" method="POST">
+        <form action="/dog/add-dog" method="POST">
             <label for="name">Кличка:</label>
             <input type="text" id="name" name="name" required>
     
@@ -21,8 +21,7 @@
     
             <label for="age">Вік:</label>
             <input type="text" id="age" name="age" min="0" max="100" required>
-    
-            <!-- owner_id має бути прихований або з сесії -->
+
             <input type="hidden" id="owner_id" name="owner_id" value="">
     
             <button type="submit">Зберегти собаку</button>

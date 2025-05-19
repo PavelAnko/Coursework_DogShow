@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const breedSelect = document.getElementById('breed_id');
  
     try {
-        const response = await fetch('/api/breeds');
+        const response = await fetch('/dog/api/breeds');
         if (!response.ok) throw new Error('Помилка запиту до API порід');
 
         const breeds = await response.json();

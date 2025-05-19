@@ -1,19 +1,19 @@
 const path = require('path');
-const db = require('../models/DataBase.js');
-const RegistrationServiceDO = require('../service/RegistrationServiceDO.js');
+const RegistrationServiceDO = require('../../service/RegistrationServiceDO.js');
+const DogRepository = require('../../repository/DogRepository.js');
 
 const RegDogController = {
     getAddDogPage: (req, res) => {
         if (!req.session.temp_owner_data && !req.session.owner) {
             return res.redirect('/error/403');
         }
-        res.sendFile(path.join(__dirname, '../../views/add-dog.html'));
+        res.sendFile(path.join(__dirname, '../../../views/add-dog.html'));
     },
 
     getBreeds: async (req, res) => {
         try {
-            const result = await db.query('SELECT id, name FROM breeds ORDER BY name');
-            res.json(result.rows);
+            const breeds = await DogRepository.getAllBreeds();
+            res.json(breeds);
         } catch (err) {
             console.error(err);
             res.redirect('/error/500');

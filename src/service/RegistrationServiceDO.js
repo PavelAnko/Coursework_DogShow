@@ -44,8 +44,7 @@ const RegistrationServiceDO = {
       phone_number,
       password
     };
-  }
-
+  },
 };
 
 module.exports = RegistrationServiceDO;

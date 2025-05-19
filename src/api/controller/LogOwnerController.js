@@ -1,12 +1,12 @@
 const path = require('path');
-const AuthService = require('../service/AuthService.js')
+const AuthService = require('../../service/AuthService.js')
 
 const LogOwnerController = {
     getLogOwnerPage: (req, res) => {
-        res.sendFile(path.join(__dirname, '../../views/log_in.html'));
+        res.sendFile(path.join(__dirname, '../../../views/log_in.html'));
     },
     
-    loginOwner: async (req, res) => {
+    logInOwner: async (req, res) => {
         const { name, phone_number, password } = req.body;
         try {
             const owner = await AuthService.authenticateOwner({ name, phone_number, password });

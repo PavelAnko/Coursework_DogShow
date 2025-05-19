@@ -38,7 +38,19 @@ const AdminModel = {
             return rows;
         } catch (err) {
             console.error('Error fetching achievements:', err);
-            throw new Error('Database error while fetching achievements');
+             throw new Error('Database error while fetching achievements');
+        }
+    },
+
+    getAllOwnersFromDB: async () => {
+        try {
+            const { rows } = await db.query(`
+                SELECT id, name, surname FROM public.owners ORDER BY id ASC
+            `);
+            return rows;
+        } catch (err) {
+            console.error('Помилка при запиті власників з БД:', err);
+            throw new Error('Database error while fetching owners');
         }
     },
 

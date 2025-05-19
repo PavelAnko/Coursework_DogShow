@@ -22,6 +22,19 @@ const OwnerModel = {
             'INSERT INTO owners (id, name, surname, phone_number, dog_count, password) VALUES ($1, $2, $3, $4, $5, $6)',
             [owner_id, name, surname, phone_number, dogCount, hashedPassword]
         );
+    },
+
+    findByPhoneNumber: async (phoneNumber) => {
+        try {
+            const result = await db.query(
+                `SELECT id, name, surname, password FROM owners WHERE phone_number = $1`,
+                [phoneNumber]
+            );
+            return result;
+        } catch (err) {
+            console.error('DB error while getting owner by phone number:', err);
+            throw new Error('Помилка БД при пошуку власника');
+        }
     }
 };
 

@@ -13,7 +13,6 @@ body {
     height: 100vh;
 }
 
-/* ======= Сторінка входу ======= */
 .login-container {
     background-color: #fff;
     border-radius: 8px;
@@ -23,7 +22,6 @@ body {
     max-width: 400px;
 }
 
-/* ======= Заголовки ======= */
 h1 {
     text-align: center;
     margin-bottom: 20px;
@@ -35,7 +33,6 @@ h2 {
     color: #333;
 }
 
-/* ======= Форма ======= */
 form label {
     display: block;
     font-weight: bold;
@@ -51,7 +48,6 @@ form select {
     margin-bottom: 15px;
 }
 
-/* ======= Кнопка ======= */
 button {
     width: 100%;
     padding: 10px;
@@ -68,7 +64,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* ======= Повідомлення ======= */
 .message {
     text-align: center;
     font-weight: bold;
@@ -76,7 +71,6 @@ button:hover {
     margin-top: 10px;
 }
 
-/* ======= Адмін-панель ======= */
 .container {
     max-width: 1200px;
     background: white;
@@ -85,7 +79,6 @@ button:hover {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-/* Блоки секцій */
 .dashboard-sections {
     display: flex;
     align-items: anchor-center;
@@ -162,8 +155,6 @@ button:hover {
     margin-left: 20px;
 }
 
-
-/* Адаптивність */
 @media (max-width: 768px) {
     .dashboard-sections {
         flex-direction: column;

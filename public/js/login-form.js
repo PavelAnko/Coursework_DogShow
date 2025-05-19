@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const { name, phone_number, password } = Object.fromEntries(new FormData(form));
     
         try {
-            const response = await fetch('/login', {
+            const response = await fetch('/login/user', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, phone_number, password })

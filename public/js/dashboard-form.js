@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/api/owner-info')
+    fetch('/dashboard/api/owner-info')
         .then(res => res.json())
         .then(data => {
             const ownerDiv = document.getElementById('owner-info');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
 try {
-    const res = await fetch('/api/owner-dogs');
+    const res = await fetch('/dashboard/api/owner-dogs');
     const dogs = await res.json();
 
     const dogsBox = document.getElementById('dogs-box');
@@ -29,11 +29,10 @@ try {
         const dogEntry = document.createElement('div');
         dogEntry.classList.add('dog-entry');
 
-        // Отримати досягнення собаки
         let achievementText = 'Досягнень поки немає';
         try {
             let dogId = dog.id;
-            const achRes = await fetch(`/api/dog-achievements/${dogId}`);
+            const achRes = await fetch(`/dashboard/api/dog-achievements/${dogId}`);
             const achievements = await achRes.json();
 
             if (Array.isArray(achievements) && achievements.length > 0) {
@@ -58,7 +57,7 @@ try {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const res = await fetch('/api/exhibitions');
+      const res = await fetch('/dashboard/api/exhibitions');
       if (!res.ok) throw new Error(res.status);
       const exhibitions = await res.json();
   
@@ -88,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
     
 document.getElementById('add-dog-btn').addEventListener('click', function () {
-    window.location.href = '/add-dog';
+    window.location.href = '/dog';
 });
 
 document.getElementById('register-dog-exhib-btn').addEventListener('click', function () {
@@ -97,10 +96,9 @@ document.getElementById('register-dog-exhib-btn').addEventListener('click', func
 
 document.addEventListener('DOMContentLoaded', async () => {
   const tableBody = document.querySelector('#registrations-table tbody');
-  const table = document.querySelector('#registrations-table'); // Вибираємо саму таблицю (додано для сховування)
 
   try {
-    const response = await fetch('/api/owner-registrations');
+    const response = await fetch('/dashboard/reg-exhibirions/api/owner-registrations');
     const data = await response.json();
 
     if (!response.ok || !Array.isArray(data)) {
@@ -153,7 +151,7 @@ document.addEventListener("click", function (e) {
     (async () => {
       try {
         
-        const deleteRes = await fetch(`/api/delete-dog/${dogId}`, {
+        const deleteRes = await fetch(`/dashboard/api/delete-dog/${dogId}`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' }
         });
@@ -174,7 +172,7 @@ document.addEventListener("click", function (e) {
 
 document.getElementById('log-out-btn').addEventListener('click', async () => {
   try {
-    const res = await fetch('/logout', { method: 'POST' });
+    const res = await fetch('/dashboard/logout', { method: 'POST' });
     if (res.ok) {
       window.location.href = '/login';
     } else {
@@ -184,19 +182,3 @@ document.getElementById('log-out-btn').addEventListener('click', async () => {
     console.error('Помилка з’єднання при виході:', err);
   }
 });
-
-// document.getElementById('res-dog-exhibition-btn').addEventListener('click', async () => {
-//   try {
-//     const res = await fetch('/api/result-exhibition', { method: 'POST' });
-//     if (res.ok) {
-//       const data = await res.json(); 
-//       alert('Досягнення успішно присвоєно собаці!'); 
-//       window.location.reload(); 
-//     } else {
-//       alert('Не вдалося присвоїти досягнення.');
-//     }
-//   } catch (err) {
-//     console.error('Error:', err);
-//     alert('Помилка при зв’язку з сервером.');
-//   }
-// });

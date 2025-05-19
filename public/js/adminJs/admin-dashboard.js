@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     exhibitionSelect.disabled = true;
     exhibitionSelect.innerHTML = '<option value="" disabled selected>-- Спочатку оберіть власника --</option>';
 
-    await fetchData('/api/all-owners', ownerSelect, '-- Оберіть власника --', owners =>
+    await fetchData('/admin/api/all-owners', ownerSelect, '-- Оберіть власника --', owners =>
         owners.map(owner => ({
             id: owner.id,
             name: `${owner.id} – ${owner.name} ${owner.surname}`
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         dogSelect.disabled = false;
         removeButton.disabled = true;
 
-        await fetchData(`/api/owner-dogs/${ownerId}`, dogSelect, '-- Оберіть собаку --', dogs =>
+        await fetchData(`/admin/api/owner-dogs/${ownerId}`, dogSelect, '-- Оберіть собаку --', dogs =>
             dogs.map(dog => ({
                 id: dog.id,
                 name: `${dog.name} – ${dog.breed} – ${dog.age} років`
@@ -74,14 +74,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         exhibitionSelect.disabled = false;
         achievementSelect.disabled = false;
 
-        await fetchData('/api/dog-achievements', achievementSelect, '-- Оберіть досягнення --', achievements =>
+        await fetchData('/admin/api/dog-achievements', achievementSelect, '-- Оберіть досягнення --', achievements =>
             achievements.map(a => ({
                 id: a.id,
                 name: `${a.title}`
             }))
         );
 
-        await fetchData(`/api/dog-exhibition/${dogId}`, exhibitionSelect, '-- Оберіть виставку --', exhibitions =>
+        await fetchData(`/admin/api/dog-exhibition/${dogId}`, exhibitionSelect, '-- Оберіть виставку --', exhibitions =>
             exhibitions.map(a => ({
                 id: a.id,
                 name: `${a.title}`
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const categoryId = categorySelect.value;
     
     try {
-        await fetchData('/api/exhibitions-categories', categorySelect, '-- Оберіть категорію --', categories =>
+        await fetchData('/admin/api/exhibitions-categories', categorySelect, '-- Оберіть категорію --', categories =>
             categories.map(c => ({
                 id: c.id,
                 name: c.name
